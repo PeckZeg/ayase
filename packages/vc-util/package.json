@@ -1,0 +1,33 @@
+{
+  "name": "@ayase/vc-util",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "PeckZeg <peck.zeg@gmail.com>",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeckZeg/ayase.git",
+    "directory": "packages/vc-util"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "ayase build"
+  },
+  "bugs": {
+    "url": "https://github.com/PeckZeg/ayase/issues"
+  },
+  "dependencies": {
+    "@ayase/ayase": "^0.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.0.0-rc.5"
+  }
+}

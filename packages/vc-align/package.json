@@ -1,0 +1,29 @@
+{
+  "name": "vc-align",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "PeckZeg <peck.zeg@gmail.com>",
+  "homepage": "https://github.com/PeckZeg/ayase#readme",
+  "license": "ISC",
+  "main": "lib/vc-align.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://npm.meitu-int.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeckZeg/ayase.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/PeckZeg/ayase/issues"
+  }
+}

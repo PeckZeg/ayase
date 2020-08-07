@@ -1,0 +1,32 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "private": true,
+  "description": "> TODO: description",
+  "author": "PeckZeg <peck.zeg@gmail.com>",
+  "license": "WTFPL",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeckZeg/ayase.git"
+  },
+  "scripts": {
+    "compile": "cd ../ayase && yarn build",
+    "start": "yarn compile && ayase start",
+    "build": "yarn compile && ayase build"
+  },
+  "dependencies": {
+    "@ayase/ayase": "^0.0.0",
+    "@ayase/vc-util": "^0.0.0",
+    "dom-align": "^1.12.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "vue": "^3.0.0-rc.5",
+    "vue-router": "4.0.0-beta.6",
+    "vue-types": "1.7.0"
+  },
+  "devDependencies": {
+    "father-build": "1.18.1"
+  }
+}
