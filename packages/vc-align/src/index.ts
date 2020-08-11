@@ -3,24 +3,19 @@ import { AlignType, AlignResult, TargetType, TargetPoint } from './interface';
 import addEventListener from '@ayase/vc-util/lib/Dom/addEventListener';
 import { isSamePoint, restoreFocus, monitorResize } from './util';
 import { alignElement, alignPoint } from 'dom-align';
-import { composeRef } from '@ayase/vc-util/lib/ref';
-import {
-  defineComponent,
-  h,
-  ref,
-  computed,
-  watchEffect,
-  getCurrentInstance,
-  onBeforeUnmount,
-  isVNode,
-  cloneVNode,
-  toRef,
-  watch,
-  toRefs,
-  onUpdated
-} from 'vue';
 import useBuffer from './hooks/useBuffer';
-import VueTypes from 'vue-types';
+
+import {
+  Ref,
+  onBeforeUnmount,
+  defineComponent,
+  watchEffect,
+  cloneVNode,
+  isVNode,
+  watch,
+  toRef,
+  ref
+} from 'vue';
 
 type OnAlign = (source: HTMLElement, result: AlignResult) => void;
 
@@ -37,8 +32,9 @@ interface MonitorRef {
   cancel: () => void;
 }
 
-export interface RefAlign {
-  forceAlign: () => void;
+export interface AlignRawBindings {
+  forceAlign: ReturnType<typeof useBuffer>[0];
+  nodeRef: Ref<any>;
 }
 
 function getElement(func: TargetType) {
@@ -51,32 +47,14 @@ function getPoint(point: TargetType) {
   return point;
 }
 
-function useImperativeHandle(object: any) {
-  const currentInstance = getCurrentInstance();
-
-  Object.defineProperties(
-    currentInstance.proxy,
-    Object.keys(object).reduce((acc, key) => {
-      acc[key] = {
-        value: object[key],
-        configurable: false,
-        enumerable: true,
-        writable: false
-      };
-
-      return acc;
-    }, {})
-  );
-}
-
-export default defineComponent({
+export default defineComponent<AlignProps, AlignRawBindings>({
   props: {
     align: { type: undefined },
     target: { type: undefined },
-    monitorBufferTime: { type: undefined },
-    monitorWindowResize: { type: undefined },
+    monitorBufferTime: { type: Number },
+    monitorWindowResize: { type: Boolean },
     disabled: { type: Boolean, default: false }
-  },
+  } as undefined,
 
   emits: ['align'],
 
@@ -99,11 +77,10 @@ export default defineComponent({
     });
 
     watch(
-      [toRef(props, 'disabled'), toRef(props, 'target')],
+      [toRef(props, 'disabled'), toRef(props, 'target')] as const,
       ([disabled, target]) => {
         forceAlignPropsRef.value.disabled = disabled;
         forceAlignPropsRef.value.target = target;
-        console.log(target, target.value);
       }
     );
 
@@ -212,11 +189,11 @@ export default defineComponent({
     });
 
     // ====================== Ref =======================
-    useImperativeHandle({
-      forceAlign: () => forceAlign(true)
-    });
+    // useImperativeHandle({
+    //   forceAlign: () => forceAlign(true)
+    // });
 
-    return { nodeRef };
+    return { forceAlign, nodeRef };
   },
 
   // ===================== Render =====================

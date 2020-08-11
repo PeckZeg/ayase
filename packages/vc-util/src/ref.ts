@@ -1,24 +1,38 @@
-import { Ref, watchEffect, ref } from 'vue';
-
-export function fillRef<T>(ref: Ref<T>, node: T) {
-  if (typeof ref === 'function') {
-    (ref as Function)(node);
-  } else if (typeof ref === 'object' && ref && (ref as any).__v_isRef) {
-    ref.value = node;
-  }
-}
+import { VNodeProps, VNode, getCurrentInstance, watch, ref } from 'vue';
 
 /**
  * Merge refs into one ref function to support ref passing.
  */
-export function composeRef<T>(...refs: Ref<T>[]): Ref<T> {
-  const node = ref<T>();
+export function composeRef(...refs: VNodeProps['ref'][]) {
+  const watchRef = ref(null);
 
-  watchEffect(() => {
-    refs.forEach((ref) => {
-      fillRef(ref, node.value);
+  const cacheRefs = ref(
+    refs.reduce((acc, customRef) => {
+      if (customRef == null) {
+        return acc;
+      }
+
+      if (Array.isArray(customRef)) {
+        acc.push((customRef as any) as VNode['ref']);
+      } else {
+        acc.push([getCurrentInstance(), customRef]);
+      }
+
+      return acc;
+    }, [] as VNode['ref'][])
+  );
+
+  watch(watchRef, (node) => {
+    cacheRefs.value.forEach(([instance, customRef]) => {
+      if (typeof customRef === 'function') {
+        (customRef as Function)(node);
+      } else if (typeof customRef === 'string') {
+        if (customRef in (instance as any).setupState) {
+          (instance as any).setupState[customRef] = customRef;
+        }
+      }
     });
   });
 
-  return node;
+  return watchRef;
 }

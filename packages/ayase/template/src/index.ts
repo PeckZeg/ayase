@@ -1,7 +1,7 @@
 import App from './App';
 
 import { router } from './router';
-import examples from './examples';
 import { createApp } from 'vue';
+import './style/index.less';
 
 createApp(App).use(router).mount('#app');

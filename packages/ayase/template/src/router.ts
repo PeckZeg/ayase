@@ -1,6 +1,3 @@
-import CosPlay from './CosPlay';
-import Game from './Game';
-
 import { createWebHashHistory, createRouter } from 'vue-router';
 import examples from './examples';
 import _ from 'lodash';

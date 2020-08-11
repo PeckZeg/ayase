@@ -1,0 +1,31 @@
+//
+//  Style
+//  --------------------------------------------------
+
+// prettier-ignore-start
+// =====================
+
+@aside-width: 256px;
+
+// ===================
+// prettier-ignore-end
+
+html,
+body {
+  margin: 0;
+}
+
+#app {
+  display: flex;
+}
+
+#preview {
+  flex: 1;
+}
+
+#nav {
+  flex: 0 @aside-width;
+  margin-right: 24px;
+  height: 100vh;
+  background: #f2f2f2;
+}

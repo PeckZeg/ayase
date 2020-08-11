@@ -1,21 +1,17 @@
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 
+import webpack, { Configuration, RuleSetQuery, RuleSetUse } from 'webpack';
 import paths, { moduleFileExtensions } from './paths';
 import safePostCssParser from 'postcss-safe-parser';
-import webpack, { Configuration } from 'webpack';
 import getBabelConfig from '../getBabelConfig';
-import resolve from 'resolve';
 import path from 'path';
 import fs from 'fs';
 
 const appPackageJson = require(paths.appPackageJson);
-
-const isExtendingEslintConfig = process.env.EXTEND_ESLINT === 'true';
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -28,6 +24,62 @@ export default function (
 ): Configuration {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
+
+  // common function to get style loaders
+  const getStyleLoaders = (cssOptions: RuleSetQuery, preProcessor: string) => {
+    const loaders: RuleSetUse = [
+      isEnvDevelopment && require.resolve('style-loader'),
+      isEnvProduction && {
+        loader: MiniCssExtractPlugin.loader,
+        // css is located in `static/css`, use '../../' to locate index.html folder
+        // in production `paths.publicUrlOrPath` can be a relative path
+        options: paths.publicUrlOrPath.startsWith('.')
+          ? { publicPath: '../../' }
+          : {}
+      },
+      {
+        loader: require.resolve('css-loader'),
+        options: cssOptions
+      },
+      {
+        // Options for PostCSS as we reference these options twice
+        // Adds vendor prefixing based on your specified browser support in
+        // package.json
+        loader: require.resolve('postcss-loader'),
+        options: {
+          ident: 'postcss',
+          sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+          plugins: () => [
+            require('postcss-flexbugs-fixes'),
+            require('postcss-preset-env')({
+              autoprefixer: { flexbox: 'no-2009' },
+              stage: 3
+            })
+          ]
+        }
+      }
+    ].filter(Boolean);
+
+    if (preProcessor) {
+      loaders.push(
+        {
+          loader: require.resolve('resolve-url-loader'),
+          options: {
+            sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+            root: paths.appSrc
+          }
+        },
+        {
+          loader: require.resolve(preProcessor),
+          options: {
+            sourceMap: true
+          }
+        }
+      );
+    }
+
+    return loaders;
+  };
 
   return {
     mode: webpackEnv,
@@ -158,7 +210,7 @@ export default function (
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
-      modules: ['node_modules', paths.appNodeModules],
+      modules: [paths.appNodeModules, 'node_modules'],
 
       // These are the reasonable defaults supported by the Node ecosystem.
       // We also include JSX as a common component filename extension to support
@@ -186,6 +238,17 @@ export default function (
         {
           test: /\.vue$/,
           use: [require.resolve('vue-loader')]
+        },
+
+        {
+          test: /\.(less|css)$/,
+          use: getStyleLoaders(
+            {
+              importLoaders: 3,
+              sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment
+            },
+            'less-loader'
+          )
         },
 
         {

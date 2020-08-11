@@ -20,14 +20,6 @@
     </p>
 
     <div
-      :style="{
-        width: `${sourceWidth}px`,
-        height: '10px',
-        background: 'yellow'
-      }"
-    />
-
-    <div
       id="container"
       :ref="containerRef"
       :style="{
@@ -111,6 +103,7 @@ export default {
     },
 
     alignRef(node) {
+      console.log(node);
       this.$align = node;
     },
 

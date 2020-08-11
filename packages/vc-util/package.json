@@ -27,7 +27,7 @@
   "dependencies": {
     "@ayase/ayase": "^0.0.0"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "vue": "^3.0.0-rc.5"
   }
 }

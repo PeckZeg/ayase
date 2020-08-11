@@ -1,21 +1,21 @@
 <template>
-  <ul>
-    <li v-for="[name, text] in links" :key="name">
-      <router-link :to="{ name }">{{ text }}</router-link>
-    </li>
-  </ul>
+  <Nav />
 
-  <router-view />
+  <div id="preview">
+    <router-view />
+  </div>
 </template>
 
 <script type="ts">
 import { RouterLink, RouterView } from 'vue-router';
+import Nav from './Nav';
+
 import examples from "./examples";
 import { ref } from 'vue';
 import _ from 'lodash';
 
 export default {
-  components: { RouterLink, RouterView },
+  components: { RouterLink, RouterView, Nav },
 
   setup() {
     const links = ref(examples.map(([name]) => [_.kebabCase(name), name]))
