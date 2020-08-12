@@ -37,7 +37,6 @@
         :disabled="disabled"
       >
         <div
-          :ref="testRef"
           :style="{
             position: 'absolute',
             width: `${sourceWidth}px`,
@@ -91,6 +90,7 @@ export default {
         // parent ref not attached
         this.$container = document.getElementById('container');
       }
+
       return this.$container;
     },
 
@@ -98,12 +98,7 @@ export default {
       this.$container = ele;
     },
 
-    testRef(ele) {
-      console.log({ ele });
-    },
-
     alignRef(node) {
-      console.log(node);
       this.$align = node;
     },
 

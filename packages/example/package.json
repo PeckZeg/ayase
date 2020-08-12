@@ -14,8 +14,7 @@
   },
   "scripts": {
     "compile": "cd ../ayase && yarn build",
-    "start": "yarn compile && ayase start",
-    "build": "yarn compile && ayase build"
+    "start": "yarn compile && ayase start"
   },
   "dependencies": {
     "@ayase/ayase": "^0.0.0",

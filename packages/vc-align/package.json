@@ -1,5 +1,5 @@
 {
-  "name": "vc-align",
+  "name": "@ayase/vc-align",
   "version": "0.0.0",
   "description": "align ui component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
@@ -24,7 +24,7 @@
   "scripts": {
     "compile": "cd ../ayase && yarn build",
     "start": "yarn compile && ayase start",
-    "build": "yarn compile && ayase build"
+    "build": "ayase build"
   },
   "dependencies": {
     "@ayase/ayase": "^0.0.0",

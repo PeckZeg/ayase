@@ -8,9 +8,6 @@ function replacePath(pathname: any) {
     const esModule = pathname.node.source.value.replace('/lib/', '/es/');
     const esPath = path.dirname(path.join(cwd, `node_modules/${esModule}`));
     if (fs.existsSync(esPath)) {
-      console.log(
-        `[es build] replace ${pathname.node.source.value} with ${esModule}`
-      );
       pathname.node.source.value = esModule;
     }
   }
