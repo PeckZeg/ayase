@@ -133,7 +133,7 @@ export default async function (opts: IBabelOpts) {
       path.join(srcPath, '**/*'),
       `!${path.join(srcPath, '**/fixtures{,/**}')}`,
       `!${path.join(srcPath, '**/demos{,/**}')}`,
-      `!${path.join(srcPath, '**/__test__{,/**}')}`,
+      `!${path.join(srcPath, '**/tests{,/**}')}`,
       `!${path.join(srcPath, '**/*.mdx')}`,
       `!${path.join(srcPath, '**/*.md')}`,
       `!${path.join(srcPath, '**/*.+(test|e2e|spec).+(js|jsx|ts|tsx)')}`

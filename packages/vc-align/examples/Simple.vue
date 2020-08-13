@@ -35,6 +35,7 @@
         :monitor-window-resize="monitor"
         :align="align"
         :disabled="disabled"
+        @align="onAlign"
       >
         <div
           :style="{
@@ -120,6 +121,10 @@ export default {
 
     toggleSourceSize() {
       this.sourceWidth = this.sourceWidth + 10;
+    },
+
+    onAlign(...args) {
+      console.log('onAlign', ...args);
     }
   }
 };

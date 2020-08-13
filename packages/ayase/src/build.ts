@@ -11,7 +11,7 @@ export function getBundleOpts(opts: BuildOpts) {
   const { cwd } = opts;
   const entry = getExistsFile({
     cwd,
-    files: ['src/index.tsx', 'src/index.ts', 'src/index.jsx', 'src/index.js'],
+    files: ['src/index.tsx', 'src/index.d.ts', 'src/index.jsx', 'src/index.js'],
     returnRelative: true
   });
 

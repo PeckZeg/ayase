@@ -1,5 +1,9 @@
 <template>
   <nav id="nav">
+    <h1>
+      <code>{{ title }}</code>
+    </h1>
+
     <ul>
       <li v-for="[name, text] in links" :key="name">
         <router-link :to="{ name }">{{ text }}</router-link>
@@ -19,7 +23,12 @@ export default {
       examples.map(([name]) => [_.kebabCase(name), name])
     );
 
+    const title = computed(() =>
+      (process.env.AYASE_TITLE || '').replace(/^@ayase\//, '')
+    );
+
     return {
+      title,
       links
     };
   }

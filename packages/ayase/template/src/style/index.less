@@ -7,6 +7,26 @@
 
 @aside-width: 256px;
 
+@font-size-base: 14px;
+@font-size-lg: @font-size-base + 2px;
+@font-size-sm: 12px;
+@heading-1-size: ceil(@font-size-base * 2.71);
+@heading-2-size: ceil(@font-size-base * 2.14);
+@heading-3-size: ceil(@font-size-base * 1.71);
+@heading-4-size: ceil(@font-size-base * 1.42);
+
+// vertical paddings
+@padding-lg: 24px; // containers
+@padding-md: 16px; // small containers and buttons
+@padding-sm: 12px; // Form controls and items
+@padding-xs: 8px; // small items
+@padding-xss: 4px; // more small
+
+// Animation
+@animation-duration-slow: 0.3s; // Modal
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s; // Tooltip
+
 // ===================
 // prettier-ignore-end
 
@@ -21,6 +41,8 @@ body {
 
 #preview {
   flex: 1;
+  overflow: auto;
+  height: 100vh;
 }
 
 #nav {
@@ -28,4 +50,39 @@ body {
   margin-right: 24px;
   height: 100vh;
   background: #f2f2f2;
+
+  h1 {
+    margin: 0;
+    padding: @padding-md;
+    font-size: @heading-3-size;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: @padding-xs;
+
+      a {
+        display: block;
+        padding: @padding-xs @padding-md;
+        transition: all @animation-duration-base;
+        font-size: @font-size-base;
+        text-decoration: none;
+        color: #333;
+
+        &:hover {
+          background: #ddd;
+        }
+
+        &.router-link-active {
+          background: #bbb;
+          font-weight: 500;
+          color: #f2f2f2;
+        }
+      }
+    }
+  }
 }

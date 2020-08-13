@@ -93,6 +93,10 @@ export default defineComponent<AlignProps, AlignRawBindings>({
       if (!latestDisabled && latestTarget) {
         const source = nodeRef.value;
 
+        if (!source) {
+          return;
+        }
+
         let result: AlignResult;
         const element = getElement(latestTarget);
         const point = getPoint(latestTarget);

@@ -25,6 +25,8 @@ export default function (
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
 
+  const pkgJson = require(paths.appPackageJson);
+
   // common function to get style loaders
   const getStyleLoaders = (cssOptions: RuleSetQuery, preProcessor: string) => {
     const loaders: RuleSetUse = [
@@ -278,11 +280,19 @@ export default function (
     plugins: [
       new VueLoaderPlugin(),
 
+      new webpack.DefinePlugin({
+        'process.env': {
+          AYASE_TITLE: JSON.stringify(pkgJson.name),
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        }
+      }),
+
       new HtmlWebpackPlugin(
         Object.assign(
           {
             inject: true,
-            template: paths.appHtml
+            template: paths.appHtml,
+            title: pkgJson.name || 'vue component'
           },
           isEnvProduction && {
             minify: {
