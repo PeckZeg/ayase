@@ -6,7 +6,9 @@
 
     <ul>
       <li v-for="[name, text] in links" :key="name">
-        <router-link :to="{ name }">{{ text }}</router-link>
+        <router-link :to="{ name }">
+          <code>{{ text }}</code>
+        </router-link>
       </li>
     </ul>
   </nav>

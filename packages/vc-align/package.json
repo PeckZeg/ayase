@@ -22,8 +22,7 @@
     "directory": "packages/vc-align"
   },
   "scripts": {
-    "compile": "cd ../ayase && yarn build",
-    "start": "yarn compile && ayase start",
+    "start": "ayase start",
     "build": "ayase build"
   },
   "dependencies": {

@@ -19,6 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
+    "start": "ayase start",
     "build": "ayase build"
   },
   "bugs": {

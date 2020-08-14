@@ -1,11 +1,3 @@
 # `vc-align`
 
-> TODO: description
-
-## Usage
-
-```
-const vcAlign = require('vc-align');
-
-// TODO: DEMONSTRATE API
-```
+[`rc-align`](https://github.com/react-component/align) for vue 3.
