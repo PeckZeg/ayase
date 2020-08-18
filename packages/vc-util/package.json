@@ -1,18 +1,19 @@
 {
   "name": "@ayase/vc-util",
   "version": "0.0.1",
-  "description": "> TODO: description",
+  "description": "Common Utils For Vue 3 Component",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
+  "keywords": [
+    "vue",
+    "util"
+  ],
   "files": [
     "es",
     "lib"
   ],
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "repository": {
