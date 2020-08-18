@@ -26,7 +26,7 @@
   </CSSMotion>
 </template>
 
-<script>
+<script lang="ts">
 import CSSMotion from '../src';
 
 export default {

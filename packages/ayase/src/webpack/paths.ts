@@ -34,10 +34,10 @@ export const moduleFileExtensions = [
   'ts',
   'web.tsx',
   'tsx',
+  'vue',
   'json',
   'web.jsx',
-  'jsx',
-  'vue'
+  'jsx'
 ];
 
 // Resolve file paths in the same order as webpack

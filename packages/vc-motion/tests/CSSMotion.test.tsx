@@ -1,14 +1,10 @@
-import { ComponentPublicInstance, defineComponent } from 'vue';
 import CSSMotion, { CSSMotionProps, genCSSMotion } from '../src/CSSMotion';
+import { ComponentPublicInstance, defineComponent } from 'vue';
 
 import { mount } from '@vue/test-utils';
-import { log } from '@ayase/ayase/src/utils';
 
 describe('CSSMotion', () => {
-  const CSSMotion = genCSSMotion({
-    transitionSupport: true,
-    forwardRef: false
-  });
+  const CSSMotion = genCSSMotion(true);
 
   beforeEach(() => {
     jest.useFakeTimers();
@@ -208,5 +204,168 @@ describe('CSSMotion', () => {
       expect(boxNode.classes()).toContain('transition-leave');
       expect(boxNode.classes()).not.toContain('transition-leave-active');
     });
+
+    it('deadline should work', async () => {
+      const onAppearEnd = jest.fn();
+
+      const wrapper = mount(
+        defineComponent<CSSMotionProps>({
+          render(ctx) {
+            return (
+              <CSSMotion
+                {...ctx.$attrs}
+                v-slots={{
+                  default: (props) => <div {...props} class="motion-box" />
+                }}
+              />
+            );
+          }
+        }),
+        {
+          props: {
+            motionName: 'transition',
+            motionDeadline: 1000,
+            visible: true,
+            onAppearEnd
+          } as CSSMotionProps
+        }
+      );
+
+      expect(onAppearEnd).not.toHaveBeenCalled();
+      await wrapper.vm.$nextTick();
+      jest.runAllTimers();
+      await wrapper.vm.$nextTick();
+      expect(onAppearEnd).toHaveBeenCalled();
+    });
+  });
+
+  describe('animation', () => {
+    const actionList = [
+      {
+        name: 'appear',
+        props: { motionAppear: true },
+        visible: [true]
+      },
+      {
+        name: 'enter',
+        props: { motionEnter: true },
+        visible: [false, true]
+      },
+      {
+        name: 'leave',
+        props: { motionLeave: true },
+        visible: [true, false]
+      }
+    ];
+
+    actionList.forEach(({ name, visible, props }) => {
+      const Demo = defineComponent<CSSMotionProps>({
+        render() {
+          return (
+            <CSSMotion
+              {...Object.assign(
+                {
+                  motionName: 'animation',
+                  motionAppear: false,
+                  motionEnter: false,
+                  motionLeave: false,
+                  visible: visible[0]
+                },
+                props,
+                this.$attrs
+              )}
+              v-slots={{
+                default: (props) => <div class="motion-box" {...props} />
+              }}
+            />
+          );
+        }
+      });
+
+      it(name, async () => {
+        const wrapper = mount(Demo);
+        const nextVisible = visible[1];
+
+        // Delay for the visible finished
+        if (nextVisible !== undefined) {
+          await wrapper.setProps({ visible: nextVisible });
+        }
+
+        await wrapper.vm.$nextTick();
+        const boxNode = wrapper.find('.motion-box');
+
+        expect(boxNode.classes()).toContain('animation');
+        expect(boxNode.classes()).toContain(`animation-${name}`);
+        expect(boxNode.classes()).not.toContain(`animation-${name}-active`);
+
+        // Motion active
+        jest.runAllTimers();
+        await wrapper.vm.$forceUpdate();
+        await wrapper.vm.$nextTick();
+        const activeBoxNode = wrapper.find('.motion-box');
+        expect(activeBoxNode.classes()).toContain('animation');
+        expect(activeBoxNode.classes()).toContain(`animation-${name}`);
+        expect(activeBoxNode.classes()).toContain(`animation-${name}-active`);
+      });
+    });
+  });
+
+  describe('immediately', () => {
+    it('motionLeaveImmediately', async () => {
+      const wrapper = mount(
+        defineComponent<CSSMotionProps>({
+          props: CSSMotion.props,
+
+          render(ctx) {
+            return (
+              <CSSMotion
+                {...ctx.$props}
+                v-slots={{
+                  default: (props) => <div {...props} class="motion-box" />
+                }}
+              />
+            );
+          }
+        }),
+        {
+          props: {
+            motionName: 'transition',
+            motionLeaveImmediately: true,
+            visible: false
+          }
+        }
+      );
+
+      const boxNode = wrapper.find('.motion-box');
+      expect(boxNode.classes()).toContain('transition');
+      expect(boxNode.classes()).toContain('transition-leave');
+      expect(boxNode.classes()).not.toContain('transition-leave-active');
+
+      // Motion active
+      await wrapper.vm.$nextTick();
+      jest.runAllTimers();
+      await wrapper.vm.$nextTick();
+
+      const activeBoxNode = wrapper.find('.motion-box');
+      expect(boxNode.classes()).toContain('transition');
+      expect(boxNode.classes()).toContain('transition-leave');
+      expect(boxNode.classes()).toContain('transition-leave-active');
+    });
+  });
+
+  it('no transition', async () => {
+    const NoCSSTransition = genCSSMotion(false);
+
+    const wrapper = mount(() => (
+      <NoCSSTransition
+        motionName="transition"
+        v-slots={{ default: (props) => <div {...props} class="motion-box" /> }}
+      />
+    ));
+
+    const boxNode = wrapper.find('.motion-box');
+    expect(boxNode.classes()).not.toContain('transition');
+    expect(boxNode.classes()).not.toContain('transition-appear');
+    expect(boxNode.classes()).not.toContain('transition-appear-active');
   });
 });

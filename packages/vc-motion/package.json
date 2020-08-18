@@ -19,10 +19,13 @@
     "lib",
     "es"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:PeckZeg/ayase.git",
-    "directory": "packages/vc-align"
+    "directory": "packages/vc-motion"
   },
   "scripts": {
     "start": "ayase start",

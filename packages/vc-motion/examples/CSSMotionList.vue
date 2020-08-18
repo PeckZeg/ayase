@@ -42,11 +42,10 @@
   </CSSMotionList>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
 import { CSSMotionList } from '../src';
 
-export default defineComponent({
+export default {
   components: { CSSMotionList },
 
   data() {
@@ -92,7 +91,7 @@ export default defineComponent({
       return { width: 0, margin: '0 -5px 0 0' };
     }
   }
-});
+};
 </script>
 
 <style lang="less">

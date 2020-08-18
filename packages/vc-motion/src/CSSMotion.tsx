@@ -23,13 +23,6 @@ export type MotionStatus =
   | typeof STATUS_ENTER
   | typeof STATUS_LEAVE;
 
-export type CSSMotionConfig =
-  | boolean
-  | {
-      transitionSupport?: boolean;
-      forwardRef?: boolean;
-    };
-
 export type MotionEvent = (TransitionEvent | AnimationEvent) & {
   deadline?: boolean;
 };
@@ -103,13 +96,7 @@ export interface CSSMotionState {
  * `transitionSupport` is used for none transition test case.
  * Default we use browser transition event support check.
  */
-export function genCSSMotion(config: CSSMotionConfig) {
-  let transitionSupport = config;
-
-  if (typeof config === 'object') {
-    ({ transitionSupport } = config);
-  }
-
+export function genCSSMotion(transitionSupport: boolean) {
   function isSupportTransition(props: CSSMotionProps) {
     return !!(props.motionName && transitionSupport);
   }
@@ -359,7 +346,9 @@ export function genCSSMotion(config: CSSMotionConfig) {
         });
 
         if (nextStep) {
-          this.$nextTick(nextStep);
+          this.$nextTick(() => {
+            nextStep();
+          });
         }
       },
 

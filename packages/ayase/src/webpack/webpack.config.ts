@@ -256,23 +256,31 @@ export default function (
         {
           test: /\.(js|mjs|jsx|ts|tsx)$/,
           include: [paths.appSrc, paths.appExamples, paths.appComponent],
-          loader: require.resolve('babel-loader'),
-          options: {
-            babelrc: false,
-            configFile: false,
-            // This is a feature of `babel-loader` for webpack (not Babel itself).
-            // It enables caching results in ./node_modules/.cache/babel-loader/
-            // directory for faster rebuilds.
-            cacheDirectory: true,
-            cacheCompression: false,
-            compact: isEnvProduction,
-            ...getBabelConfig({
-              target: 'browser',
-              type: 'cjs',
-              typescript: true,
-              runtimeHelpers: true
-            })[0]
-          }
+          use: [
+            {
+              loader: require.resolve('babel-loader'),
+              options: {
+                babelrc: false,
+                configFile: false,
+                // This is a feature of `babel-loader` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: isEnvProduction,
+                ...getBabelConfig({
+                  target: 'browser',
+                  type: 'cjs',
+                  typescript: true,
+                  runtimeHelpers: true
+                })[0]
+              }
+            },
+            {
+              loader: require.resolve('ts-loader'),
+              options: { appendTsSuffixTo: [/\.vue$/] }
+            }
+          ]
         }
       ]
     },

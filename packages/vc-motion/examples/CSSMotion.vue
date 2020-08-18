@@ -78,8 +78,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import CSSMotion from '../src';
+
 export default {
   components: { CSSMotion },
 

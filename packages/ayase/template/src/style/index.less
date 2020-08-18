@@ -2,9 +2,6 @@
 //  Style
 //  --------------------------------------------------
 
-// prettier-ignore-start
-// =====================
-
 @aside-width: 256px;
 
 @font-size-base: 14px;
@@ -27,9 +24,6 @@
 @animation-duration-base: 0.2s;
 @animation-duration-fast: 0.1s; // Tooltip
 
-// ===================
-// prettier-ignore-end
-
 html,
 body {
   margin: 0;
@@ -42,6 +36,7 @@ body {
 #preview {
   flex: 1;
   overflow: auto;
+  box-sizing: border-box;
   padding: @padding-xs;
   height: 100vh;
 }

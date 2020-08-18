@@ -12,6 +12,9 @@
     "es",
     "lib"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PeckZeg/ayase.git",
