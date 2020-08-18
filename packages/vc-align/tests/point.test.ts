@@ -19,7 +19,7 @@ describe('point align', () => {
 
   it('pass point', async () => {
     jest.useFakeTimers();
-    const wrapper = mount(VcAlign as any, {
+    const wrapper = mount(VcAlign, {
       props: {
         align: { points: ['tc'] },
         target: null

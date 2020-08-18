@@ -35,6 +35,8 @@ export default function getBabelConfig(opts: IGetBabelConfigOpts) {
       ].filter(Boolean),
 
       plugins: [
+        require.resolve('@ant-design-vue/babel-plugin-jsx'),
+        require.resolve('babel-plugin-lodash'),
         type === 'cjs' &&
           lazy &&
           !isBrowser && [

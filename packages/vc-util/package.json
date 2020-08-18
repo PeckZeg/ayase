@@ -26,9 +26,13 @@
     "url": "https://github.com/PeckZeg/ayase/issues"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.0"
+    "@ayase/ayase": "^0.0.0",
+    "lodash": "^4.17.20"
   },
   "peerDependencies": {
     "vue": "^3.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.159"
   }
 }

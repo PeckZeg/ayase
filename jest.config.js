@@ -7,8 +7,10 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleFileExtensions: ['vue', ...defaults.moduleFileExtensions],
+  setupFiles: ['./tests/setup.js'],
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.js?$': ['babel-jest', { rootMode: 'upward' }],
+    '^.+\\.(js|ts)x$': ['babel-jest', { rootMode: 'upward' }],
     '^.+\\.vue$': 'vue-jest'
   },
   globals: {
