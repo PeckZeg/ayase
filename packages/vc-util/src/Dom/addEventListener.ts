@@ -1,3 +1,4 @@
+// TODO: support `Window`
 export default function addEventListenerWrap<
   K extends keyof HTMLElementEventMap
 >(

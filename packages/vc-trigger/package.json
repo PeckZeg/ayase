@@ -1,7 +1,7 @@
 {
-  "name": "@ayase/vc-motion",
-  "version": "0.0.1",
-  "description": "Vue lifecycle controlled motion library",
+  "name": "@ayase/vc-trigger",
+  "version": "0.0.0",
+  "description": "base abstract trigger component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
   "main": "./lib/index",
@@ -9,13 +9,11 @@
   "keywords": [
     "vue",
     "vue-component",
-    "vue-motion",
-    "motion",
-    "antd",
-    "antdv",
-    "ant-design"
+    "vue-trigger",
+    "trigger"
   ],
   "files": [
+    "assets",
     "lib",
     "es"
   ],
@@ -26,7 +24,7 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:PeckZeg/ayase.git",
-    "directory": "packages/vc-motion"
+    "directory": "packages/vc-trigger"
   },
   "scripts": {
     "start": "ayase start",
@@ -34,14 +32,12 @@
   },
   "dependencies": {
     "@ayase/ayase": "^0.0.1",
+    "@ayase/vc-align": "^0.0.1",
+    "@ayase/vc-motion": "^0.0.1",
     "@ayase/vc-util": "^0.0.1",
-    "lodash": "^4.17.20",
     "raf": "^3.4.1"
   },
   "peerDependencies": {
     "vue": "^3.0.0-rc.5"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.159"
   }
 }

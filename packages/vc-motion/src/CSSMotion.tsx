@@ -1,8 +1,8 @@
-import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/vue/mixins';
+import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/mixins';
 import { CSSProperties, defineComponent } from 'vue';
 
-import { getListeners } from '@ayase/vc-util/lib/vue/instance';
-import { toEmitsList } from '@ayase/vc-util/lib/vue';
+import { getListeners } from '@ayase/vc-util/lib/instance';
+import { toEmitsList } from '@ayase/vc-util';
 import raf from 'raf';
 
 import {
@@ -59,29 +59,6 @@ export interface CSSMotionProps {
   removeOnLeave?: boolean;
   leavedClass?: string;
   eventProps?: object;
-
-  // onAppearStart?: MotionEventHandler;
-  // onEnterStart?: MotionEventHandler;
-  // onLeaveStart?: MotionEventHandler;
-  //
-  // onAppearActive?: MotionEventHandler;
-  // onEnterActive?: MotionEventHandler;
-  // onLeaveActive?: MotionEventHandler;
-  //
-  // onAppearEnd?: MotionEndEventHandler;
-  // onEnterEnd?: MotionEndEventHandler;
-  // onLeaveEnd?: MotionEndEventHandler;
-
-  // internalRef?: Ref<any>;
-
-  // children?: (
-  //   props: {
-  //     className?: string;
-  //     style?: CSSProperties;
-  //     [key: string]: any;
-  //   },
-  //   ref: (node: any) => void
-  // ) => VNode;
 }
 
 export interface CSSMotionState {
@@ -200,11 +177,11 @@ export function genCSSMotion(transitionSupport: boolean) {
     },
 
     mounted() {
-      this.onDomUpdate();
+      this.$nextTick(this.onDomUpdate);
     },
 
     updated() {
-      this.onDomUpdate();
+      this.$nextTick(this.onDomUpdate);
     },
 
     beforeUnmount() {
@@ -241,7 +218,6 @@ export function genCSSMotion(transitionSupport: boolean) {
 
         // Event injection
         const $ele = this.getElement();
-
         if (this.$cacheEle !== $ele) {
           this.removeEventListener(this.$cacheEle);
           this.addEventListener($ele);
@@ -291,9 +267,9 @@ export function genCSSMotion(transitionSupport: boolean) {
         this.node = node;
       },
 
-      getElement() {
+      getElement(): HTMLElement {
         if (this.node) {
-          return this.node;
+          return this.node.$el || this.node;
         }
 
         /**
@@ -410,10 +386,11 @@ export function genCSSMotion(transitionSupport: boolean) {
         }
 
         if (!removeOnLeave) {
-          return children(
-            { ...eventProps, class: leavedClass },
-            ctx.setNodeRef
-          );
+          return children({
+            ...eventProps,
+            class: leavedClass,
+            ref: ctx.setNodeRef
+          });
         }
 
         return null;

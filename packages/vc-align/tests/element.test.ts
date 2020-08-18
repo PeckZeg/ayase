@@ -16,6 +16,7 @@ describe('element align', () => {
       props: { monitorWindowResize: true }
     });
 
+    await wrapper.vm.$nextTick();
     jest.runAllTimers();
     expect(wrapper.emitted()).toHaveProperty('align');
 

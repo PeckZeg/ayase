@@ -1,18 +1,21 @@
 {
   "name": "@ayase/vc-util",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.1",
+  "description": "Common Utils For Vue 3 Component",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
+  "main": "./lib/index",
+  "module": "./es/index",
+  "keywords": [
+    "vue",
+    "util"
+  ],
   "files": [
     "es",
     "lib"
   ],
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "repository": {
@@ -29,7 +32,7 @@
     "url": "https://github.com/PeckZeg/ayase/issues"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.0",
+    "@ayase/ayase": "^0.0.1",
     "lodash": "^4.17.20"
   },
   "peerDependencies": {
