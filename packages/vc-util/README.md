@@ -11,9 +11,9 @@
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
-Common Utils For Vue 3 Component.
+> [`rc-util`](https://github.com/react-component/util) for vue 3
 
-> the original repo: [`rc-util`](https://github.com/react-component/util)
+Common Utils For Vue 3 Component.
 
 ## Install
 
