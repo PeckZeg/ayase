@@ -1,7 +1,8 @@
-import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/vue/mixins';
+import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/mixins';
 import { VNode, Component, Fragment, defineComponent } from 'vue';
 import OriginCSSMotion, { CSSMotionProps } from './CSSMotion';
 
+import { getListener } from '@ayase/vc-util/lib/instance';
 import { supportTransition } from './util/motion';
 import _ from 'lodash';
 
@@ -14,7 +15,6 @@ import {
   parseKeys,
   KeyObject
 } from './util/diff';
-import { getListener } from '@ayase/vc-util/lib/vue/instance';
 
 const MOTION_PROP_NAMES = [
   'eventProps',

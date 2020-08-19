@@ -1,8 +1,8 @@
-import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/vue/mixins';
+import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/mixins';
 import { CSSProperties, defineComponent } from 'vue';
 
-import { getListeners } from '@ayase/vc-util/lib/vue/instance';
-import { toEmitsList } from '@ayase/vc-util/lib/vue';
+import { getListeners } from '@ayase/vc-util/lib/instance';
+import { toEmitsList } from '@ayase/vc-util';
 import raf from 'raf';
 
 import {

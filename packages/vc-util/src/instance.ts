@@ -1,5 +1,5 @@
 import { ComponentPublicInstance } from 'vue';
-import { pascalCase } from '../index';
+import { pascalCase } from './index';
 import _ from 'lodash';
 
 export function getListener<T extends Function = Function>(

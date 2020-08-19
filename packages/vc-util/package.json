@@ -4,6 +4,8 @@
   "description": "Common Utils For Vue 3 Component",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
+  "main": "./lib/index",
+  "module": "./es/index",
   "keywords": [
     "vue",
     "util"
