@@ -1,9 +1,7 @@
-import _ from 'lodash';
-
-function getComponentStaticMethod<T = any>(
+function getComponentStaticMethod<T = Function>(
   instance: any,
   methodName: string
-): T {
+): T | undefined {
   return instance.$.type[methodName];
 }
 
@@ -16,15 +14,10 @@ export const DerivedStateFromPropsMixin = {
 
     this.prevState = { ...this.state };
 
-    const newState = getDerivedStateFromProps.call(
-      this,
-      this.$props,
-      this.prevState
+    Object.assign(
+      this.state,
+      getDerivedStateFromProps.call(this, this.$props, this.prevState)
     );
-
-    if (!_.isEqual(this.state, newState)) {
-      this.state = newState;
-    }
   },
 
   beforeUpdate() {
@@ -35,14 +28,9 @@ export const DerivedStateFromPropsMixin = {
 
     this.prevState = { ...this.state };
 
-    const newState = getDerivedStateFromProps.call(
-      this,
-      this.$props,
-      this.prevState
+    Object.assign(
+      this.state,
+      getDerivedStateFromProps.call(this, this.$props, this.prevState)
     );
-
-    if (!_.isEqual(this.state, newState)) {
-      this.state = newState;
-    }
   }
 };

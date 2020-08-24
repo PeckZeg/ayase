@@ -16,6 +16,7 @@ import {
   toRef,
   ref
 } from 'vue';
+import { composeRef, getRefElement } from '@ayase/vc-util/lib/ref';
 
 type OnAlign = (source: HTMLElement, result: AlignResult) => void;
 
@@ -91,7 +92,7 @@ export default defineComponent<AlignProps, AlignRawBindings>({
       } = forceAlignPropsRef.value;
 
       if (!latestDisabled && latestTarget) {
-        const source = nodeRef.value;
+        const source = getRefElement(nodeRef);
 
         if (!source) {
           return;
@@ -133,12 +134,13 @@ export default defineComponent<AlignProps, AlignRawBindings>({
     watchEffect(() => {
       const element = getElement(props.target);
       const point = getPoint(props.target);
+      const nodeRefElem = getRefElement(nodeRef);
 
-      if (nodeRef.value !== sourceResizeMonitor.value.element) {
+      if (nodeRefElem !== sourceResizeMonitor.value.element) {
         sourceResizeMonitor.value.cancel();
-        sourceResizeMonitor.value.element = nodeRef.value;
+        sourceResizeMonitor.value.element = nodeRefElem;
         sourceResizeMonitor.value.cancel = monitorResize(
-          nodeRef.value,
+          nodeRefElem,
           forceAlign
         );
       }
@@ -204,9 +206,11 @@ export default defineComponent<AlignProps, AlignRawBindings>({
   render(ctx) {
     let childNode = ctx.$slots.default()[0];
 
+    const a = childNode.ref;
+
     if (isVNode(childNode)) {
       childNode = cloneVNode(childNode, {
-        ref: 'nodeRef'
+        ref: composeRef('nodeRef', childNode.ref)
       });
     }
 

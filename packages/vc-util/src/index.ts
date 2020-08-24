@@ -14,3 +14,27 @@ export function toEmitsList(...listeners: string[]) {
     return acc;
   }, []);
 }
+
+export function returnEmptyString() {
+  return '';
+}
+
+export function returnEmptyObject() {
+  return {};
+}
+
+export function returnEmptyArray() {
+  return [];
+}
+
+export function returnUndefined() {
+  return undefined;
+}
+
+export function returnNull() {
+  return null;
+}
+
+export function returnDocument() {
+  return window.document;
+}
