@@ -117,12 +117,12 @@ export interface TriggerProps {
   getTriggerDOMNode?: (node: ComponentPublicInstance) => HTMLElement;
 }
 
-interface TriggerRawBindings {
+export interface TriggerRawBindings {
   popupRef: Ref<typeof Popup>;
   triggerRef: Ref<ComponentPublicInstance>;
 }
 
-interface TriggerState {
+export interface TriggerState {
   prevPopupVisible: boolean;
   popupVisible: boolean;
   point?: Point;
