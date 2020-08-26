@@ -1,6 +1,6 @@
 {
   "name": "@ayase/babel-plugin-transform-vue3-jsx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "turn JSX into Vue3 function calls",
   "author": "PeckZeg <peck.zeg@gmail.com>",

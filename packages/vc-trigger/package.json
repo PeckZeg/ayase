@@ -1,6 +1,6 @@
 {
   "name": "@ayase/vc-trigger",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "base abstract trigger component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
@@ -31,10 +31,10 @@
     "build": "ayase build"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.1",
-    "@ayase/vc-align": "^0.0.1",
-    "@ayase/vc-motion": "^0.0.1",
-    "@ayase/vc-util": "^0.0.1",
+    "@ayase/ayase": "^0.0.2",
+    "@ayase/vc-align": "^0.0.2",
+    "@ayase/vc-motion": "^0.0.2",
+    "@ayase/vc-util": "^0.0.2",
     "raf": "^3.4.1"
   },
   "peerDependencies": {

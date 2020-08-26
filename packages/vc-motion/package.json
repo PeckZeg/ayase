@@ -1,6 +1,6 @@
 {
   "name": "@ayase/vc-motion",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vue lifecycle controlled motion library",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
@@ -33,8 +33,8 @@
     "build": "ayase build"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.1",
-    "@ayase/vc-util": "^0.0.1",
+    "@ayase/ayase": "^0.0.2",
+    "@ayase/vc-util": "^0.0.2",
     "lodash": "^4.17.20",
     "raf": "^3.4.1"
   },
