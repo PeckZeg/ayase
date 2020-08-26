@@ -1,5 +1,6 @@
 import { DerivedStateFromPropsMixin } from '@ayase/vc-util/lib/mixins';
 import { ClassList } from '@ayase/vc-util/lib/types';
+import DateTimeFormatPart = Intl.DateTimeFormatPart;
 import { CSSMotionProps } from '@ayase/vc-motion';
 import Portal from '@ayase/vc-util/lib/Portal';
 import TriggerContext from './context';
@@ -18,18 +19,22 @@ import {
 } from 'vue';
 
 import {
-  TransitionNameType,
-  BuildInPlacements,
+  CommonEventHandler,
   AnimationType,
   ActionType,
   AlignType,
-  Point
+  Point,
+  BuildInPlacements,
+  TransitionNameType
 } from './interface';
 
 import { getAlignPopupClass, getAlignFromPlacement } from './utils/alignUtil';
+import { getListener, getPropOrSlot } from '@ayase/vc-util/lib/instance';
 import addEventListener from '@ayase/vc-util/lib/Dom/addEventListener';
+import { getVNodeListener } from '@ayase/vc-util/lib/vnode';
 import contains from '@ayase/vc-util/lib/Dom/contains';
 import { composeRef } from '@ayase/vc-util/lib/ref';
+import _ from 'lodash';
 
 import {
   returnEmptyString,
@@ -38,9 +43,6 @@ import {
   returnDocument,
   toEmitsList
 } from '@ayase/vc-util/lib';
-
-import { getListener, getPropOrSlot } from '@ayase/vc-util/lib/instance';
-import { getVNodeListener } from '@ayase/vc-util/lib/vnode';
 
 const ALL_HANDLERS = [
   'onClick',
