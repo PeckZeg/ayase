@@ -17,7 +17,7 @@ Vue 3 Trigger Component
 
 ## Install
 
-[![vc-trigger](https://nodei.co/npm/@ayase/vc-trigger.png)](https://www.npmjs.com/package/@ayase/vc-motion)
+[![vc-trigger](https://nodei.co/npm/@ayase/vc-trigger.png)](https://www.npmjs.com/package/@ayase/vc-trigger)
 
 ## Usage
 
@@ -99,7 +99,4 @@ yarn start
 
 ## License
 
-vc-trigger is released under the MIT license.
-
-[vc-motion]: https://github.com/PeckZeg/ayase/blob/master/packages/vc-motion/README.md
-[dom-align]: https://github.com/yiminghe/dom-align
+MIT

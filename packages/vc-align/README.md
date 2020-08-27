@@ -44,3 +44,7 @@ export default {
 | `align`               | same with alignConfig from [dom-align](https://github.com/yiminghe/dom-align)                                       | `Object`                                                                                        | -              |
 | `target`              | a function which returned value or point is used for target from [dom-align](https://github.com/yiminghe/dom-align) | `() => HTMLElement \| { pageX: number, pageY: number } \| { clientX: number, clientY: number }` | `() => window` |
 | `monitorWindowResize` | whether realign when window is resized                                                                              | `boolean`                                                                                       | `false`        |
+
+## License
+
+MIT

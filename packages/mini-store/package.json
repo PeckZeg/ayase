@@ -1,0 +1,34 @@
+{
+  "name": "@ayase/mini-store",
+  "version": "0.0.0",
+  "author": "PeckZeg <peck.zeg@gmail.com>",
+  "license": "MIT",
+  "main": "./lib/index",
+  "module": "./es/index",
+  "files": [
+    "assets",
+    "lib",
+    "es"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:PeckZeg/ayase.git",
+    "directory": "packages/mini-store"
+  },
+  "scripts": {
+    "start": "ayase start",
+    "build": "ayase build"
+  },
+  "dependencies": {
+    "@ayase/ayase": "^0.0.2",
+    "@ayase/vc-util": "^0.0.2",
+    "shallowequal": "^1.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0-rc.5"
+  }
+}
