@@ -1,5 +1,7 @@
 # `vc-align`
 
+Vue 3 Align Component. Wrapper around https://github.com/yiminghe/dom-align.
+
 [![NPM version][npm-image]][npm-url]
 [![David dm][david-dm-image]][david-dm-url]
 [![node version][node-image]][node-url]

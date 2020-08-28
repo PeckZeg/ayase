@@ -1,5 +1,7 @@
 # mini-store
 
+A state store for Vue 3 component.
+
 [![NPM version][npm-image]][npm-url]
 [![David dm][david-dm-image]][david-dm-url]
 [![node version][node-image]][node-url]
@@ -12,8 +14,6 @@
 [node-url]: http://nodejs.org/download/
 
 > [`mini-store`](https://github.com/yesmeck/mini-store) for vue 3
-
-A state store for React component.
 
 ## Install
 

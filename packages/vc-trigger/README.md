@@ -1,5 +1,7 @@
 # vc-trigger
 
+Vue 3 Trigger Component
+
 [![NPM version][npm-image]][npm-url]
 [![David dm][david-dm-image]][david-dm-url]
 [![node version][node-image]][node-url]
@@ -12,8 +14,6 @@
 [node-url]: http://nodejs.org/download/
 
 > [`rc-trigger`](https://github.com/react-component/trigger) for vue 3
-
-Vue 3 Trigger Component
 
 ## Install
 

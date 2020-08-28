@@ -1,5 +1,7 @@
 # vc-motion
 
+Vue 3 lifecycle controlled motion library.
+
 [![NPM version][npm-image]][npm-url]
 [![David dm][david-dm-image]][david-dm-url]
 [![node version][node-image]][node-url]
@@ -12,8 +14,6 @@
 [node-url]: http://nodejs.org/download/
 
 > [`rc-motion`](https://github.com/react-component/motion) for vue 3
-
-Vue 3 lifecycle controlled motion library.
 
 ## Install
 
