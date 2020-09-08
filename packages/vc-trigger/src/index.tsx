@@ -61,7 +61,13 @@ export interface TriggerProps {
   getPopupNameFromAlign?: (align: AlignType) => string;
   // onPopupVisibleChange?: (visible: boolean) => void;
   // afterPopupVisibleChange?: (visible: boolean) => void;
-  popup: VNode | VNode[] | (() => VNode | VNode[]) | JSX.Element | JSX.Element[] | (() => JSX.Element | JSX.Element[]);
+  popup:
+    | VNode
+    | VNode[]
+    | (() => VNode | VNode[])
+    | JSX.Element
+    | JSX.Element[]
+    | (() => JSX.Element | JSX.Element[]);
   popupStyle?: CSSProperties;
   prefixCls?: string;
   popupClass?: ClassList;
@@ -123,7 +129,11 @@ export interface TriggerState {
 export { BuildInPlacements };
 
 export function generateTrigger(PortalComponent: any) {
-  return defineComponent<TriggerProps, TriggerRawBindings, { state: TriggerState }>({
+  return defineComponent<
+    TriggerProps,
+    TriggerRawBindings,
+    { state: TriggerState }
+  >({
     name: 'Trigger',
     mixins: [DerivedStateFromPropsMixin],
 
@@ -209,10 +219,16 @@ export function generateTrigger(PortalComponent: any) {
       };
     },
 
-    getDerivedStateFromProps({ popupVisible }: TriggerProps, prevState: TriggerState) {
+    getDerivedStateFromProps(
+      { popupVisible }: TriggerProps,
+      prevState: TriggerState
+    ) {
       const newState: Partial<TriggerState> = {};
 
-      if (popupVisible !== undefined && prevState.popupVisible !== popupVisible) {
+      if (
+        popupVisible !== undefined &&
+        prevState.popupVisible !== popupVisible
+      ) {
         newState.popupVisible = popupVisible;
         newState.prevPopupVisible = prevState.popupVisible;
       }
@@ -253,19 +269,34 @@ export function generateTrigger(PortalComponent: any) {
         // https://github.com/react-component/trigger/issues/50
         if (state.popupVisible) {
           let currentDocument;
-          if (!this.clickOutsideHandler && (this.isClickToHide() || this.isContextMenuToShow())) {
+          if (
+            !this.clickOutsideHandler &&
+            (this.isClickToHide() || this.isContextMenuToShow())
+          ) {
             currentDocument = props.getDocument();
-            this.clickOutsideHandler = addEventListener(currentDocument, 'mousedown', this.onDocumentClick);
+            this.clickOutsideHandler = addEventListener(
+              currentDocument,
+              'mousedown',
+              this.onDocumentClick
+            );
           }
           // always hide on mobile
           if (!this.touchOutsideHandler) {
             currentDocument = currentDocument || props.getDocument();
-            this.touchOutsideHandler = addEventListener(currentDocument, 'touchstart', this.onDocumentClick);
+            this.touchOutsideHandler = addEventListener(
+              currentDocument,
+              'touchstart',
+              this.onDocumentClick
+            );
           }
           // close popup when trigger type contains 'onContextMenu' and document is scrolling.
           if (!this.contextMenuOutsideHandler1 && this.isContextMenuToShow()) {
             currentDocument = currentDocument || props.getDocument();
-            this.contextMenuOutsideHandler1 = addEventListener(currentDocument, 'scroll', this.onContextMenuClose);
+            this.contextMenuOutsideHandler1 = addEventListener(
+              currentDocument,
+              'scroll',
+              this.onContextMenuClose
+            );
           }
           // close popup when trigger type contains 'onContextMenu' and window is blur.
           if (!this.contextMenuOutsideHandler2 && this.isContextMenuToShow()) {
@@ -286,7 +317,11 @@ export function generateTrigger(PortalComponent: any) {
         const { mouseEnterDelay }: TriggerProps = this.$props;
 
         this.fireEvents('onMouseEnter', e);
-        this.delaySetPopupVisible(true, mouseEnterDelay, mouseEnterDelay ? null : e);
+        this.delaySetPopupVisible(
+          true,
+          mouseEnterDelay,
+          mouseEnterDelay ? null : e
+        );
       },
 
       onMouseMove(e) {
@@ -375,13 +410,21 @@ export function generateTrigger(PortalComponent: any) {
         // Only prevent default when all the action is click.
         // https://github.com/ant-design/ant-design/issues/17043
         // https://github.com/ant-design/ant-design/issues/17291
-        if (this.isClickToShow() && (this.isClickToHide() || this.isBlurToHide()) && event && event.preventDefault) {
+        if (
+          this.isClickToShow() &&
+          (this.isClickToHide() || this.isBlurToHide()) &&
+          event &&
+          event.preventDefault
+        ) {
           event.preventDefault();
         }
 
         const nextVisible = !this.state.popupVisible;
 
-        if ((this.isClickToHide() && !nextVisible) || (nextVisible && this.isClickToShow())) {
+        if (
+          (this.isClickToHide() && !nextVisible) ||
+          (nextVisible && this.isClickToShow())
+        ) {
           this.setPopupVisible(!this.state.popupVisible, event);
         }
       },
@@ -408,7 +451,11 @@ export function generateTrigger(PortalComponent: any) {
         const root = this.getRootDomNode();
         const popupNode = this.getPopupDomNode();
 
-        if (!contains(root, target) && !contains(popupNode, target) && !this.hasPopupMouseDown) {
+        if (
+          !contains(root, target) &&
+          !contains(popupNode, target) &&
+          !this.hasPopupMouseDown
+        ) {
           this.close();
         }
       },
@@ -455,7 +502,9 @@ export function generateTrigger(PortalComponent: any) {
         const classList = [];
 
         if (popupPlacement && builtinPlacements) {
-          classList.push(getAlignPopupClass(builtinPlacements, prefixCls, align, alignPoint));
+          classList.push(
+            getAlignPopupClass(builtinPlacements, prefixCls, align, alignPoint)
+          );
         }
 
         if (getPopupNameFromAlign) {
@@ -466,10 +515,18 @@ export function generateTrigger(PortalComponent: any) {
       },
 
       getPopupAlign() {
-        const { builtinPlacements, popupPlacement, popupAlign }: TriggerProps = this.$props;
+        const {
+          builtinPlacements,
+          popupPlacement,
+          popupAlign
+        }: TriggerProps = this.$props;
 
         if (popupPlacement && builtinPlacements) {
-          return getAlignFromPlacement(builtinPlacements, popupPlacement, popupAlign);
+          return getAlignFromPlacement(
+            builtinPlacements,
+            popupPlacement,
+            popupAlign
+          );
         }
 
         return popupAlign;
@@ -576,7 +633,10 @@ export function generateTrigger(PortalComponent: any) {
             Object.assign(this.state, { popupVisible, prevPopupVisible });
           }
 
-          const onPopupVisibleChange = getListener(this, 'onPopupVisibleChange');
+          const onPopupVisibleChange = getListener(
+            this,
+            'onPopupVisibleChange'
+          );
 
           if (onPopupVisibleChange) {
             onPopupVisibleChange(popupVisible);
@@ -604,7 +664,10 @@ export function generateTrigger(PortalComponent: any) {
 
       handlePortalUpdate() {
         if (this.state.prevPopupVisible !== this.state.popupVisible) {
-          const afterPopupVisibleChange = getListener(this, 'afterPopupVisibleChange');
+          const afterPopupVisibleChange = getListener(
+            this,
+            'afterPopupVisibleChange'
+          );
 
           if (afterPopupVisibleChange) {
             afterPopupVisibleChange(this.state.popupVisible);
@@ -612,12 +675,18 @@ export function generateTrigger(PortalComponent: any) {
         }
       },
 
-      delaySetPopupVisible(visible: boolean, delayS: number, event?: MouseEvent) {
+      delaySetPopupVisible(
+        visible: boolean,
+        delayS: number,
+        event?: MouseEvent
+      ) {
         const delay = delayS * 1000;
         this.clearDelayTimer();
 
         if (delay) {
-          const point = event ? { pageX: event.pageX, pageY: event.pageY } : null;
+          const point = event
+            ? { pageX: event.pageX, pageY: event.pageY }
+            : null;
           this.delayTimer = window.setTimeout(() => {
             this.setPopupVisible(visible, point);
             this.clearDelayTimer();
@@ -671,47 +740,68 @@ export function generateTrigger(PortalComponent: any) {
       isClickToShow() {
         const { action, showAction }: TriggerProps = this.$props;
 
-        return action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1;
+        return (
+          action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1
+        );
       },
 
       isContextMenuToShow() {
         const { action, showAction }: TriggerProps = this.$props;
 
-        return action.indexOf('contextMenu') !== -1 || showAction.indexOf('contextMenu') !== -1;
+        return (
+          action.indexOf('contextMenu') !== -1 ||
+          showAction.indexOf('contextMenu') !== -1
+        );
       },
 
       isClickToHide() {
         const { action, hideAction }: TriggerProps = this.$props;
 
-        return action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1;
+        return (
+          action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1
+        );
       },
 
       isMouseEnterToShow() {
         const { action, showAction }: TriggerProps = this.$props;
 
-        return action.indexOf('hover') !== -1 || showAction.indexOf('mouseEnter') !== -1;
+        return (
+          action.indexOf('hover') !== -1 ||
+          showAction.indexOf('mouseEnter') !== -1
+        );
       },
 
       isMouseLeaveToHide() {
         const { action, hideAction }: TriggerProps = this.$props;
 
-        return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseLeave') !== -1;
+        return (
+          action.indexOf('hover') !== -1 ||
+          hideAction.indexOf('mouseLeave') !== -1
+        );
       },
 
       isFocusToShow() {
         const { action, showAction }: TriggerProps = this.$props;
 
-        return action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1;
+        return (
+          action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1
+        );
       },
 
       isBlurToHide() {
         const { action, hideAction }: TriggerProps = this.$props;
 
-        return action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1;
+        return (
+          action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1
+        );
       },
 
       forcePopupAlign() {
-        if (this.state.popupVisible && this.popupRef && this.popupRef.alignRef) {
+        if (
+          this.state.popupVisible &&
+          this.popupRef &&
+          this.popupRef.alignRef
+        ) {
           this.popupRef.alignRef.forceAlign();
         }
       },
@@ -745,7 +835,11 @@ export function generateTrigger(PortalComponent: any) {
 
     render() {
       const { popupVisible }: TriggerState = this.state;
-      const { forceRender, alignPoint, autoDestroy }: TriggerProps = this.$props;
+      const {
+        forceRender,
+        alignPoint,
+        autoDestroy
+      }: TriggerProps = this.$props;
       const children = this.$slots.default();
       const child = children[0];
       const newChildProps: any = { key: 'trigger' };
@@ -759,7 +853,7 @@ export function generateTrigger(PortalComponent: any) {
       if (this.isClickToHide() || this.isClickToShow()) {
         newChildProps.onClick = this.onClick;
         newChildProps.onMousedown = this.onMouseDown;
-        newChildProps.onTouchStart = this.onTouchStart;
+        newChildProps.onTouchstart = this.onTouchStart;
       } else {
         newChildProps.onClick = this.createTwoChains('onClick');
         newChildProps.onMousedown = this.createTwoChains('onMouseDown');
@@ -800,7 +894,11 @@ export function generateTrigger(PortalComponent: any) {
       // prevent unmounting after it's rendered
       if (popupVisible || this.popupRef || forceRender) {
         portal = (
-          <PortalComponent key="portal" getContainer={this.getContainer} didUpdate={this.handlePortalUpdate}>
+          <PortalComponent
+            key="portal"
+            getContainer={this.getContainer}
+            didUpdate={this.handlePortalUpdate}
+          >
             {this.getComponent()}
           </PortalComponent>
         );

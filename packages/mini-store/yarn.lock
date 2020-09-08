@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/shallowequal@^1.1.1":
+  version "1.1.1"
+  resolved "http://npm.meitu-int.com/@types%2fshallowequal/-/shallowequal-1.1.1.tgz#aad262bb3f2b1257d94c71d545268d592575c9b1"
+  integrity sha1-qtJiuz8rElfZTHHVRSaNWSV1ybE=
+
 shallowequal@^1.1.0:
   version "1.1.0"
   resolved "http://npm.meitu-int.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"

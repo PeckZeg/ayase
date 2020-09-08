@@ -1,4 +1,4 @@
-import { ComponentPublicInstance, Component, ComponentOptions, Ref, inject, defineComponent } from 'vue';
+import { Component, Ref, inject, defineComponent } from 'vue';
 import { DefaultRootState, Store } from './types';
 import { MiniStoreContext } from './Provider';
 
@@ -41,12 +41,17 @@ function getConnectedProps<Props>(vm: any): Props {
 
 const defaultMapStateToProps = () => ({});
 
-export function connect<TStateProps = {}, TOwnProps = {}, State = DefaultRootState>(
+export function connect<
+  TStateProps = {},
+  TOwnProps = {},
+  State = DefaultRootState
+>(
   mapStateToProps?: (state: State, ownProps: TOwnProps) => TStateProps,
   options: ConnectOptions = {}
 ) {
   const shouldSubscribe = !!mapStateToProps;
-  const finalMapStateToProps = mapStateToProps || (defaultMapStateToProps as () => TStateProps);
+  const finalMapStateToProps =
+    mapStateToProps || (defaultMapStateToProps as () => TStateProps);
 
   return function wrapWithConnect(WrappedComponent: Component) {
     return defineComponent<
@@ -67,19 +72,33 @@ export function connect<TStateProps = {}, TOwnProps = {}, State = DefaultRootSta
       data(vm) {
         return {
           state: {
-            subscribed: finalMapStateToProps((vm as any).store.getState(), getConnectedProps<TOwnProps>(vm)),
+            subscribed: Object.freeze(
+              finalMapStateToProps(
+                (vm as any).store.getState(),
+                getConnectedProps<TOwnProps>(vm)
+              )
+            ),
             props: getConnectedProps<TOwnProps>(vm)
           }
         };
       },
 
-      getDerivedStateFromProps(nextProps: TOwnProps, prevState: ConnectedState<TStateProps, Store<State>, TOwnProps>) {
+      getDerivedStateFromProps(
+        nextProps: TOwnProps,
+        prevState: ConnectedState<TStateProps, Store<State>, TOwnProps>
+      ) {
         const props = { ...nextProps, ...this.$attrs };
 
         // using ownProps
-        if (mapStateToProps && mapStateToProps.length === 2 && !shallowEqual(props, prevState.props)) {
+        if (
+          mapStateToProps &&
+          mapStateToProps.length === 2 &&
+          !shallowEqual(props, prevState.props)
+        ) {
           return {
-            subscribed: finalMapStateToProps(this.store.getState(), props),
+            subscribed: Object.freeze(
+              finalMapStateToProps(this.store.getState(), props)
+            ),
             props
           };
         }
@@ -101,7 +120,14 @@ export function connect<TStateProps = {}, TOwnProps = {}, State = DefaultRootSta
             return;
           }
 
-          this.state.subscribed = finalMapStateToProps(this.store.getState(), getConnectedProps<TOwnProps>(this));
+          const nextSubscribed = finalMapStateToProps(
+            this.store.getState(),
+            getConnectedProps<TOwnProps>(this)
+          );
+
+          if (!shallowEqual(nextSubscribed, this.state.subscribed)) {
+            this.state.subscribed = Object.freeze(nextSubscribed);
+          }
         },
 
         trySubscribe() {
@@ -127,8 +153,14 @@ export function connect<TStateProps = {}, TOwnProps = {}, State = DefaultRootSta
           store: this.store
         };
 
-        // @ts-ignore
-        return <WrappedComponent {...props} ref={this.$attrs.miniStoreForwardedRef} v-slots={{ ...this.$slots }} />;
+        return (
+          // @ts-ignore
+          <WrappedComponent
+            {...props}
+            ref={this.$attrs.miniStoreForwardedRef}
+            v-slots={{ ...this.$slots }}
+          />
+        );
       }
     });
   };

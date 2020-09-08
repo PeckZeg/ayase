@@ -1,4 +1,4 @@
-import { ComponentPublicInstance, VNode, Slot } from 'vue';
+import { ComponentPublicInstance, VNodeChild, Slot } from 'vue';
 
 import { getVNodeListener, getVNodeStyle } from './vnode';
 import _ from 'lodash';
@@ -19,22 +19,23 @@ export function getListeners<T extends Function = Function>(
 
 export function getPropOrSlot(
   instance: ComponentPublicInstance,
-  name: string
-): VNode | VNode[] | Slot {
-  const camelCaseName = _.camelCase(name);
+  name: string,
+  rendered = true
+): VNodeChild | (() => VNodeChild) | Slot | undefined {
+  for (const caseFunc of [_.camelCase, _.kebabCase]) {
+    const caseName = caseFunc(name);
+    const propOrSlot =
+      instance.$props[caseName] !== undefined
+        ? instance.$props[caseName]
+        : instance.$slots[caseName];
 
-  if (instance.$props[camelCaseName] !== undefined) {
-    return instance.$props[camelCaseName];
-  }
+    if (propOrSlot !== undefined) {
+      if (rendered) {
+        return typeof propOrSlot === 'function' ? propOrSlot() : propOrSlot;
+      }
 
-  if (instance.$slots[camelCaseName] !== undefined) {
-    return instance.$slots[camelCaseName];
-  }
-
-  const kebabCaseName = _.kebabCase(name);
-
-  if (instance.$slots[kebabCaseName] !== undefined) {
-    return instance.$slots[kebabCaseName];
+      return propOrSlot;
+    }
   }
 }
 

@@ -5,11 +5,15 @@ export const pascalCase: (string?: string) => string = _.flow([
   _.upperFirst
 ]);
 
-export function toEmitsList(...listeners: string[]) {
+export function toEmitsList<T extends string = string>(...listeners: T[]) {
   return listeners.reduce<string[]>((acc, name) => {
-    name = name.replace(/^on/, '');
+    const formatted = name.replace(/^on/, '');
 
-    acc.push(_.camelCase(name), _.kebabCase(name));
+    acc.push(
+      _.camelCase(formatted),
+      _.kebabCase(formatted),
+      formatted.toLowerCase()
+    );
 
     return acc;
   }, []);

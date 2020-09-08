@@ -462,7 +462,11 @@ export default defineComponent<
                 >
                   <PopupInner
                     prefixCls={prefixCls}
-                    class={[mergedClass, motionClass]}
+                    class={[
+                      mergedClass,
+                      this.$.vnode.props?.class,
+                      motionClass
+                    ]}
                     style={{ ...mergedStyle, ...motionStyle }}
                     ref={motionRef}
                     // @ts-ignore

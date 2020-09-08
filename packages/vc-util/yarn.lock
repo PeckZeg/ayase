@@ -11,3 +11,8 @@ lodash@^4.17.20:
   version "4.17.20"
   resolved "http://npm.meitu-int.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
+
+utility-types@^3.10.0:
+  version "3.10.0"
+  resolved "http://npm.meitu-int.com/utility-types/-/utility-types-3.10.0.tgz#ea4148f9a741015f05ed74fd615e1d20e6bed82b"
+  integrity sha1-6kFI+adBAV8F7XT9YV4dIOa+2Cs=

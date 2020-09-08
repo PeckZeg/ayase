@@ -206,8 +206,6 @@ export default defineComponent<AlignProps, AlignRawBindings>({
   render(ctx) {
     let childNode = ctx.$slots.default()[0];
 
-    const a = childNode.ref;
-
     if (isVNode(childNode)) {
       childNode = cloneVNode(childNode, {
         ref: composeRef('nodeRef', childNode.ref)

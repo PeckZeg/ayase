@@ -1,3 +1,5 @@
+import { ComponentPublicInstance, RendererElement, VNode } from 'vue';
+
 export type ClassList = string | object | Array<ClassList>;
 
 export type EventHandler<E extends Event> = (event: E) => void;
@@ -13,3 +15,7 @@ export type UIEventHandler = EventHandler<UIEvent>;
 export type WheelEventHandler = EventHandler<WheelEvent>;
 export type AnimationEventHandler = EventHandler<AnimationEvent>;
 export type TransitionEventHandler = EventHandler<TransitionEvent>;
+
+export type VueKey = NonNullable<VNode['key']>;
+
+export type VueInstance = ComponentPublicInstance<any> | RendererElement;

@@ -1,12 +1,19 @@
 {
-  "name": "@ayase/mini-store",
-  "version": "0.0.1",
+  "name": "@ayase/vc-menu",
+  "version": "0.0.2",
+  "description": "menu ui component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
   "main": "./lib/index",
   "module": "./es/index",
+  "keywords": [
+    "vue",
+    "vue-component",
+    "menu",
+    "ui",
+    "vue-menu"
+  ],
   "files": [
-    "assets",
     "lib",
     "es"
   ],
@@ -17,7 +24,7 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:PeckZeg/ayase.git",
-    "directory": "packages/mini-store"
+    "directory": "packages/vc-menu"
   },
   "scripts": {
     "start": "ayase start",
@@ -25,13 +32,15 @@
   },
   "dependencies": {
     "@ayase/ayase": "^0.0.2",
+    "@ayase/mini-store": "^0.0.1",
+    "@ayase/vc-motion": "^0.0.2",
+    "@ayase/vc-trigger": "^0.0.2",
     "@ayase/vc-util": "^0.0.2",
+    "omit.js": "^2.0.2",
+    "resize-observer-polyfill": "^1.5.1",
     "shallowequal": "^1.1.0"
   },
   "peerDependencies": {
     "vue": "^3.0.0-rc.5"
-  },
-  "devDependencies": {
-    "@types/shallowequal": "^1.1.1"
   }
 }

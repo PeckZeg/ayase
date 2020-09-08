@@ -28,9 +28,9 @@ export function create<S = {}>(initialState: S): Store<S> {
     };
   }
 
-  return {
+  return Object.freeze({
     setState,
     getState,
     subscribe
-  };
+  });
 }

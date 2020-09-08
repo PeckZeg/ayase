@@ -1,4 +1,4 @@
-import { CSSProperties, VNode } from 'vue';
+import { CSSProperties, Fragment, VNode } from 'vue';
 
 import { pascalCase } from '.';
 import _ from 'lodash';
@@ -35,4 +35,18 @@ export function getVNodeListener<T extends Function = Function>(
 
 export function getVNodeStyle(vnode: VNode) {
   return vnode.props.style as CSSProperties;
+}
+
+export function normalizeVNodes(vnodes: VNode[]): VNode[] {
+  if (!vnodes || !vnodes.length) {
+    return [];
+  }
+
+  return vnodes.reduce<VNode[]>((acc, vnode) => {
+    if (vnode.type === Fragment) {
+      return acc.concat(vnode.children as VNode[]);
+    }
+
+    return acc.concat(vnode);
+  }, []);
 }

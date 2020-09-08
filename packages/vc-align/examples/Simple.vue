@@ -100,6 +100,7 @@ export default {
     },
 
     alignRef(node) {
+      console.log(node.$.vnode);
       this.$align = node;
     },
 
