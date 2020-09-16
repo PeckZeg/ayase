@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const yParser = require('yargs-parser');
+const signale = require('signale');
 const chalk = require('chalk');
 
 const args = yParser(process.argv.slice(2));
