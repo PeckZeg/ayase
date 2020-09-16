@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Vue lifecycle controlled motion library",
   "author": "PeckZeg <peck.zeg@gmail.com>",
+  "private": true,
   "license": "MIT",
   "main": "./lib/index",
   "module": "./es/index",

@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "base abstract trigger component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
+  "private": true,
   "license": "MIT",
   "main": "./lib/index",
   "module": "./es/index",

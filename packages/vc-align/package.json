@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "align ui component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
+  "private": true,
   "license": "MIT",
   "main": "./lib/index",
   "module": "./es/index",

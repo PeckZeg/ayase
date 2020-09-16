@@ -2,6 +2,7 @@
   "name": "@ayase/vc-util",
   "version": "0.0.2",
   "description": "Common Utils For Vue 3 Component",
+  "private": true,
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "license": "MIT",
   "main": "./lib/index",
