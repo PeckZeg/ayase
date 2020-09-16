@@ -2,6 +2,7 @@
   <nav id="nav">
     <h1>
       <code>{{ name }}</code>
+      <sup>{{ version }}</sup>
     </h1>
 
     <ul>
@@ -26,7 +27,7 @@ export default {
     );
 
     return {
-      name: computed(() => document.body.dataset.name),
+      name: computed(() => document.body.dataset.name.replace(/^@ayase\//, '')),
       version: computed(() => document.body.dataset.version),
       links
     };
