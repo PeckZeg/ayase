@@ -1,6 +1,6 @@
 {
   "name": "@ayase/ayase-build",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "vue 3 library build tool",
   "bin": {
     "ayase-build": "./bin/ayase-build.js"

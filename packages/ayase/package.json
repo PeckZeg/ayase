@@ -1,6 +1,6 @@
 {
   "name": "@ayase/ayase",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "build tool",
   "bin": {
     "ayase": "./bin/ayase.js"
@@ -26,7 +26,7 @@
     "build": "father-build --cjs=babel --target=node ./src"
   },
   "dependencies": {
-    "@ayase/ayase-build": "^0.0.0",
+    "@ayase/ayase-build": "^0.0.1",
     "@babel/core": "7.10.5",
     "@typescript-eslint/eslint-plugin": "3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
