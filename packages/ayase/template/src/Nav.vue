@@ -1,7 +1,7 @@
 <template>
   <nav id="nav">
     <h1>
-      <code>{{ title }}</code>
+      <code>{{ name }}</code>
     </h1>
 
     <ul>
@@ -14,7 +14,7 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import examples from './examples';
 import { computed } from 'vue';
 import _ from 'lodash';
@@ -25,12 +25,9 @@ export default {
       examples.map(([name]) => [_.kebabCase(name), name])
     );
 
-    const title = computed(() =>
-      (process.env.AYASE_TITLE || '').replace(/^@ayase\//, '')
-    );
-
     return {
-      title,
+      name: computed(() => document.body.dataset.name),
+      version: computed(() => document.body.dataset.version),
       links
     };
   }

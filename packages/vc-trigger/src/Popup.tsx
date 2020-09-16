@@ -308,7 +308,7 @@ export default defineComponent<
       return { ...getMotion(this.$props) };
     },
 
-    // `target` on `rc-align` can accept as a function to get the bind element or a point.
+    // `target` on `rc-align` can accept as a function to get the bin element or a point.
     getAlignTarget() {
       const { point, getRootDomNode } = this.$props as PopupProps;
 

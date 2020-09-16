@@ -22,11 +22,12 @@
     "directory": "packages/ayase"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "umi-tools build"
+    "start": "yarn build --watch",
+    "build": "father-build --cjs=babel --target=node ./src"
   },
   "dependencies": {
     "@ant-design-vue/babel-plugin-jsx": "^1.0.0-rc.1",
+    "@ayase/ayase-build": "^0.0.0",
     "@babel/core": "7.10.5",
     "@babel/plugin-proposal-class-properties": "7.10.4",
     "@babel/plugin-proposal-decorators": "7.10.5",
@@ -41,11 +42,13 @@
     "@babel/register": "7.10.5",
     "@typescript-eslint/eslint-plugin": "3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
-    "@vue/compiler-sfc": "^3.0.0-rc.5",
+    "@vue/compiler-sfc": "^3.0.0-rc.11",
     "babel-loader": "^8.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "chalk": "^4.1.0",
     "css-loader": "4.2.1",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "fs-extra": "9.0.1",
     "gulp-if": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
@@ -71,7 +74,7 @@
     "umi-tools": "0.4.0",
     "update-notifier": "^4.1.0",
     "vinyl-fs": "^3.0.3",
-    "vue-loader": "^16.0.0-beta.5",
+    "vue-loader": "^16.0.0-beta.7",
     "vue-router": "^4.0.0-beta.6",
     "webpack": "^4.44.1",
     "webpack-dev-server": "^3.11.0",
@@ -92,6 +95,7 @@
     "@types/through2": "^2.0.36",
     "@types/vinyl-fs": "^2.4.11",
     "@types/webpack": "^4.41.21",
-    "@types/webpack-dev-server": "^3.11.0"
+    "@types/webpack-dev-server": "^3.11.0",
+    "father-build": "^1.18.5"
   }
 }

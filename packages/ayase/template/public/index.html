@@ -7,9 +7,9 @@
       content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= title %> <%= version %></title>
   </head>
-  <body>
+  <body data-name="<%= title %>" data-version="<%= version %>">
     <div id="app"></div>
   </body>
 </html>
