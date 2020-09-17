@@ -10,7 +10,9 @@
   "license": "MIT",
   "main": "lib/ayase.js",
   "files": [
-    "lib"
+    "lib",
+    "src",
+    "template"
   ],
   "publishConfig": {
     "access": "public",

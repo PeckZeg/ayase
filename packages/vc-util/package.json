@@ -40,6 +40,7 @@
     "vue": "^3.0.0-rc.5"
   },
   "devDependencies": {
+    "@ayase/ayase": "^0.0.4",
     "@types/lodash": "^4.14.159"
   }
 }
