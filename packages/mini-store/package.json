@@ -1,6 +1,6 @@
 {
   "name": "@ayase/mini-store",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "private": true,
   "license": "MIT",
@@ -25,8 +25,8 @@
     "build": "ayase build"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.4",
-    "@ayase/vc-util": "^0.0.4",
+    "@ayase/ayase": "^0.0.5",
+    "@ayase/vc-util": "^0.0.5",
     "shallowequal": "^1.1.0"
   },
   "peerDependencies": {
