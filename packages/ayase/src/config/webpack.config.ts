@@ -10,9 +10,9 @@ import paths from './paths';
 
 const appPackageJson = require(paths.appPackageJson);
 
+import getBabelConfig from '@ayase/ayase-build/lib/getBabelConfig';
 import { moduleFileExtensions } from './paths';
 import path from 'path';
-import getBabelConfig from '@ayase/ayase-build/lib/getBabelConfig';
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -241,6 +241,8 @@ export default function (
       extensions: moduleFileExtensions.map((ext) => `.${ext}`),
 
       alias: {
+        // fix use yarn link in development
+        '@vue/runtime-core': require.resolve('@vue/runtime-core'),
         '@/examples': paths.appExamples,
         '@/component': paths.appComponent
       }
