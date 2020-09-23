@@ -6,7 +6,6 @@ import { VueLoaderPlugin } from 'vue-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import safePostCssParser from 'postcss-safe-parser';
-import getClientEnvironment from './env';
 import paths from './paths';
 
 const appPackageJson = require(paths.appPackageJson);
@@ -17,10 +16,6 @@ import getBabelConfig from '@ayase/ayase-build/lib/getBabelConfig';
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-
-const webpackDevClientEntry = require.resolve(
-  'react-dev-utils/webpackHotDevClient'
-);
 
 export default function (
   webpackEnv: 'development' | 'production'

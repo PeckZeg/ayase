@@ -19,7 +19,6 @@ import openBrowser from 'react-dev-utils/openBrowser';
 import configFactory from './config/webpack.config';
 import paths from './config/paths';
 import webpack from 'webpack';
-import fs from 'fs';
 
 import {
   createCompiler,

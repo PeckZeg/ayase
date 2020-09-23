@@ -24,6 +24,11 @@ switch (args._[0]) {
     break;
   }
 
+  case 'docs': {
+    require('../lib/docs');
+    break;
+  }
+
   case 'build': {
     build();
     break;

@@ -17,6 +17,7 @@
     "@types/shelljs": "^0.8.8",
     "@types/yargs-parser": "^15.0.0",
     "@vue/test-utils": "^2.0.0-beta.2",
+    "babel-eslint": "^10.1.0",
     "chalk": "^4.1.0",
     "eslint": "^7.5.0",
     "eslint-friendly-formatter": "^4.0.1",

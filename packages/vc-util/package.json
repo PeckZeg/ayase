@@ -25,9 +25,9 @@
     "directory": "packages/vc-util"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
     "start": "ayase start",
-    "build": "ayase build"
+    "build": "ayase build",
+    "prepublishOnly": "yarn build"
   },
   "bugs": {
     "url": "https://github.com/PeckZeg/ayase/issues"
@@ -37,10 +37,10 @@
     "lodash": "^4.17.20"
   },
   "peerDependencies": {
-    "vue": "^3.0.0-rc.5"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@ayase/ayase": "^0.0.4",
+    "@ayase/ayase": "^0.0.5",
     "@types/lodash": "^4.14.159"
   }
 }
