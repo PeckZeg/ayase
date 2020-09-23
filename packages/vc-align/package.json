@@ -1,6 +1,6 @@
 {
   "name": "@ayase/vc-align",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "align ui component for vue 3",
   "author": "PeckZeg <peck.zeg@gmail.com>",
   "private": true,
@@ -31,14 +31,14 @@
     "build": "ayase-build"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.6",
-    "@ayase/vc-util": "^0.0.6",
+    "@ayase/ayase": "^0.0.7",
+    "@ayase/vc-util": "^0.0.7",
     "@babel/runtime": "^7.11.2",
     "dom-align": "^1.12.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@ayase/ayase-build": "^0.0.1",
+    "@ayase/ayase-build": "^0.0.2",
     "father-build": "1.18.1"
   },
   "peerDependencies": {
