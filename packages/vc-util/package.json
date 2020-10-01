@@ -1,6 +1,6 @@
 {
   "name": "@ayase/vc-util",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Common Utils For Vue 3 Component",
   "private": true,
   "author": "PeckZeg <peck.zeg@gmail.com>",
@@ -33,7 +33,7 @@
     "url": "https://github.com/PeckZeg/ayase/issues"
   },
   "dependencies": {
-    "@ayase/ayase": "^0.0.7",
+    "@ayase/ayase": "^0.0.8",
     "lodash": "^4.17.20"
   },
   "peerDependencies": {
