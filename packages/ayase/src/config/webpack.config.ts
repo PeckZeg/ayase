@@ -286,6 +286,7 @@ export default function (
                 cacheCompression: false,
                 compact: isEnvProduction,
                 ...getBabelConfig({
+                  webpack: true,
                   target: 'browser',
                   type: 'cjs',
                   typescript: true,

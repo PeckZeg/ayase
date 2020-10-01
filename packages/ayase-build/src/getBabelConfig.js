@@ -1,29 +1,4 @@
 import { extname } from 'path';
-import { ModuleFormat } from 'rollup';
-
-interface IGetBabelConfigOpts {
-  target: 'browser' | 'node';
-  type?: ModuleFormat;
-  webpack?: boolean;
-  typescript?: boolean;
-  runtimeHelpers?: boolean;
-  filePath?: string;
-  browserFiles?: {
-    [value: string]: any;
-  };
-  nodeVersion?: number;
-  nodeFiles?: {
-    [value: string]: any;
-  };
-  lazy?: boolean;
-  lessInBabelMode?:
-    | boolean
-    | {
-        paths?: any[];
-        plugins?: any[];
-      };
-}
-
 function transformImportLess2Css() {
   return {
     name: 'transform-import-less-to-css',
@@ -37,8 +12,7 @@ function transformImportLess2Css() {
     }
   };
 }
-
-export default function (opts: IGetBabelConfigOpts) {
+export default function (opts) {
   const {
     target,
     typescript,
@@ -49,8 +23,7 @@ export default function (opts: IGetBabelConfigOpts) {
     nodeFiles,
     nodeVersion,
     lazy,
-    lessInBabelMode,
-    webpack
+    lessInBabelMode
   } = opts;
   let isBrowser = target === 'browser';
   // rollup 场景下不会传入 filePath
@@ -68,7 +41,6 @@ export default function (opts: IGetBabelConfigOpts) {
   const targets = isBrowser
     ? { browsers: ['last 2 versions', 'IE 10'] }
     : { node: nodeVersion || 6 };
-
   return {
     opts: {
       presets: [
@@ -76,13 +48,7 @@ export default function (opts: IGetBabelConfigOpts) {
           ? [
               [
                 require.resolve('@babel/preset-typescript'),
-                webpack
-                  ? {
-                      allExtensions: true,
-                      isTSX: true,
-                      onlyRemoveTypeImports: true
-                    }
-                  : {}
+                { allExtensions: true }
               ]
             ]
           : []),
